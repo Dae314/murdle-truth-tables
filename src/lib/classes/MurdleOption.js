@@ -13,6 +13,7 @@ export default class MurdleOption {
 		this.id = 'id' in config ? config.id : uuidv4();
 		this.name = 'name' in config ? config.name : '';
 		this.categoryID = 'categoryID' in config ? config.categoryID : 0;
+		this.key = 'key' in config ? config.key : false;
 		if('state' in config) {
 			if(config.state >= 0 && config.state < this.#validStates.length) {
 				this.#state = config.state;

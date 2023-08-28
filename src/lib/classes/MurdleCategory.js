@@ -7,5 +7,6 @@ export default class MurdleCategory {
 		this.active = 'active' in config ? config.active : false;
 		this.options = 'options' in config ? config.options : [];
 		this.rawOptions = 'rawOptions' in config ? config.options : '';
+		this.key = 'key' in config ? config.key : false;
 	}
 }
