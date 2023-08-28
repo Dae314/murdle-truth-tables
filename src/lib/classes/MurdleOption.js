@@ -7,7 +7,6 @@ export default class MurdleOption {
 		'assigned',
 		'eliminated',
 	];
-	#state;
 	
 	constructor(config) {
 		this.id = 'id' in config ? config.id : uuidv4();
@@ -16,22 +15,22 @@ export default class MurdleOption {
 		this.key = 'key' in config ? config.key : false;
 		if('state' in config) {
 			if(config.state >= 0 && config.state < this.#validStates.length) {
-				this.#state = config.state;
+				this.state = config.state;
 			} else {
 				throw error(500, {
 					message: 'Invalid MurdleOption state specified.'
 				});
 			}
 		} else {
-			this.#state = 0;
+			this.state = 0;
 		}
 	}
 
 	toggleState() {
-		this.#state = ++this.#state % this.#validStates.length;
+		this.state = (this.state + 1) % this.#validStates.length;
 	}
 
-	get state() {
-		return this.#validStates[this.#state];
+	get stateStr() {
+		return this.#validStates[this.state];
 	}
 }

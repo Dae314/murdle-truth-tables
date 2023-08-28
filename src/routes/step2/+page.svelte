@@ -1,6 +1,7 @@
 <script>
 	import TruthTableData from '$lib/stores/TruthTableData.js';
 	import TruthTable from '$lib/classes/TruthTable.js';
+	import OptionDisplay from '$lib/OptionDisplay.svelte';
 	import { onMount } from "svelte";
 
 	onMount(async () => {
@@ -28,8 +29,36 @@
 			});
 			$TruthTableData.truth_tables = [...$TruthTableData.truth_tables, newTable];
 		}
-		console.log($TruthTableData.truth_tables);
 	}
 </script>
 
-<h1>Step 2</h1>
+<h1>Truth Tables</h1>
+
+{#each $TruthTableData.truth_tables as table}
+<table>
+	<tr>
+		{#each table.headRow as title}
+		<th>{title}</th>
+		{/each}
+	</tr>
+	{#each table.body as row}
+		<tr>
+			{#each row as cell}
+				<td>
+					{#if cell.type === 'basic'}
+						{cell.data}
+					{:else if cell.type === 'optionList'}
+						<OptionDisplay options={cell.data} />
+					{/if}
+				</td>
+			{/each}
+		</tr>
+	{/each}
+</table>
+{/each}
+
+<style lang="scss">
+	table {
+		margin: 10px;
+	}
+</style>
