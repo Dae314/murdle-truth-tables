@@ -1,4 +1,23 @@
+html {
+	--appColorPrimary: #F64C72;
+	--appColorPriAccent: #553D67;
+	--appBGColor: #242582;
+	--appBGColorAccent: #2F2FA2;
+	--appAccentColor: #99738E;
+	--appTextColor: #FFF;
+}
+
+body {
+	background-color: var(--appBGColor);
+	color: var(--appTextColor);
+}
+
 h1 {
 	font-size: 2rem;
-	color: blue;
+}
+
+h3 {
+	margin: 0;
+	margin-top: 10px;
+	padding: 0;
 }
