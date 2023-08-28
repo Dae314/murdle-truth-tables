@@ -1,11 +1,12 @@
 import { writable } from 'svelte/store';
+import MurdleCategory from '$lib/classes/MurdleCategory';
 
 const TruthTableData = writable({
 	murdle_categories: [
-		{id: 0, name: 'Suspects', active: true, options: [], rawOptions: ''},
-		{id: 1, name: 'Locations', active: true, options: [], rawOptions: ''},
-		{id: 2, name: 'Weapons', active: true, options: [], rawOptions: ''},
-		{id: 3, name: 'Motives', active: false, options: [], rawOptions: ''},
+		new MurdleCategory({id: 0, name: 'Suspects', active: true}),
+		new MurdleCategory({id: 1, name: 'Locations', active: true}),
+		new MurdleCategory({id: 2, name: 'Weapons', active: true}),
+		new MurdleCategory({id: 3, name: 'Motives', active: false}),
 	],
 });
 
