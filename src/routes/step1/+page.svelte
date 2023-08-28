@@ -9,7 +9,7 @@
 	<ul>
 		{#each $TruthTableData.murdle_categories as category}
 		<li>
-			<input type="checkbox" class="categoryPickerOption" id="{category.name}" name="{category.name}" bind:checked={category.active}>
+			<input type="checkbox" class="categoryPickerOption" id="{category.name}" name="{category.name}" bind:checked={category.active} disabled={category.name === 'Suspects'}>
 			<label class:selected={category.active} for="{category.name}">{category.name}</label>
 		</li>
 		{/each}
@@ -47,6 +47,9 @@
 			}
 			.categoryPickerOption {
 				display: none;
+				&:disabled+label {
+					cursor: not-allowed;
+				}
 			}
 			label {
 				cursor: pointer;
