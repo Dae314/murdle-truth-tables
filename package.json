@@ -5,11 +5,15 @@
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
-		"preview": "vite preview"
+		"preview": "vite preview",
+		"deploy": "npm run build && gh-pages -r https://github.com/Dae314/murdle-truth-tables -d build -t true"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^2.0.0",
+		"@sveltejs/adapter-static": "^2.0.3",
 		"@sveltejs/kit": "^1.20.4",
+		"gh-pages": "^6.0.0",
+		"sass": "^1.66.1",
 		"svelte": "^4.0.5",
 		"vite": "^4.4.2"
 	},
