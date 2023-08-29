@@ -26,7 +26,7 @@
 	{/each}
 </section>
 
-<section class="continue">
+<section class="navigation">
 	<a href="{base}/step2">Next</a>
 </section>
 
@@ -75,7 +75,7 @@
 			margin-bottom: 10px;
 		}
 	}
-	.continue {
+	.navigation {
 		margin-top: 10px;
 		a {
 			background: var(--appColorPrimary);

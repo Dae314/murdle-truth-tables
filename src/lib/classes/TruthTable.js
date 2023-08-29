@@ -26,7 +26,7 @@ export default class TruthTable {
 		this.body = [];
 		for(let bodyOption of this.categories[this.keyCategory].options) {
 			let row = [];
-			row.push({data: bodyOption, type: 'basic'});
+			row.push({data: bodyOption, type: 'basic', key: this.categories[this.keyCategory].options.indexOf(bodyOption) === this.keyOption });
 			for(let category of this.categories.filter((e, i) => i !== this.keyCategory)) {
 				row.push({data: this.#tableOptions.filter(e => e.categoryID === category.id), type: 'optionList'});
 			}

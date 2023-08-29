@@ -13,21 +13,33 @@
 </div>
 
 <style lang="scss">
+	.optionPicker {
+		align-items: center;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+	}
 	button {
-		padding: 5px;
-		cursor: pointer;
-		user-select: none;
 		background: transparent;
-		outline: none;
-		border: 2px solid var(--appColorPrimary);
+		border: 2px solid #dbdbdb;
 		border-radius: 5px;
-		&.unknown {
-			color: gray;
-		}
+		color: #dbdbdb;
+		cursor: pointer;
+		display: block;
+		margin: 5px 0px;
+		min-width: 50px;
+		outline: none;
+		padding: 5px;
+		user-select: none;
 		&.assigned {
+			background-color: var(--appColorPrimary);
+			border-color: var(--appColorPrimary);
+			color: var(--appTextColor);
 			font-weight: bold;
 		}
 		&.eliminated {
+			color: var(--appAccentColor);
+			border-color: var(--appAccentColor);
 			text-decoration: line-through;
 		}
 	}

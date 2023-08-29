@@ -2,6 +2,7 @@
 	import TruthTableData from '$lib/stores/TruthTableData.js';
 	import TruthTable from '$lib/classes/TruthTable.js';
 	import OptionDisplay from '$lib/OptionDisplay.svelte';
+	import { base } from '$app/paths';
 	import { onMount } from "svelte";
 
 	onMount(async () => {
@@ -34,31 +35,64 @@
 
 <h1>Truth Tables</h1>
 
-{#each $TruthTableData.truth_tables as table}
-<table>
-	<tr>
-		{#each table.headRow as title}
-		<th>{title}</th>
-		{/each}
-	</tr>
-	{#each table.body as row}
+<section class="navigation">
+	<a href="{base}/step1">Prev</a>
+</section>
+
+<section class="tablesDisplay">
+	{#each $TruthTableData.truth_tables as table}
+	<table>
 		<tr>
-			{#each row as cell}
-				<td>
-					{#if cell.type === 'basic'}
-						{cell.data}
-					{:else if cell.type === 'optionList'}
-						<OptionDisplay options={cell.data} />
-					{/if}
-				</td>
+			{#each table.headRow as title}
+			<th>{title}</th>
 			{/each}
 		</tr>
+		{#each table.body as row}
+			<tr>
+				{#each row as cell, i}
+					<td>
+						{#if cell.type === 'basic'}
+							<span class:key={cell.key}>{cell.data}</span>
+						{:else if cell.type === 'optionList'}
+							<OptionDisplay options={cell.data} />
+						{/if}
+					</td>
+				{/each}
+			</tr>
+		{/each}
+	</table>
 	{/each}
-</table>
-{/each}
+</section>
 
 <style lang="scss">
-	table {
-		margin: 10px;
+	.navigation {
+		margin-bottom: 20px;
+		a {
+			background: var(--appColorPrimary);
+			border-radius: 5px;
+			text-decoration: none;
+			color: var(--appTextColor);
+			font-weight: bold;
+			padding: 5px;
+		}
+	}
+	.key {
+		color: var(--appColorPrimary);
+		font-weight: bold;
+	}
+	.tablesDisplay {
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr;
+		grid-gap: 5px;
+	}
+	table, th, td {
+		border: 1px solid white;
+		border-collapse: collapse;
+	}
+	th, td {
+		padding: 5px;
+	}
+	td {
+		text-align: center;
 	}
 </style>
