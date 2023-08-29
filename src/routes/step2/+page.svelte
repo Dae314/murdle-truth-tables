@@ -41,26 +41,29 @@
 
 <section class="tablesDisplay">
 	{#each $TruthTableData.truth_tables as table}
-	<table>
-		<tr>
-			{#each table.headRow as title}
-			<th>{title}</th>
-			{/each}
-		</tr>
-		{#each table.body as row}
+	<div class="tableDiv">
+		<button type="button" class="elimButton" on:click={() => table.eliminated = !table.eliminated}>Eliminate</button>
+		<table class:eliminated={table.eliminated}>
 			<tr>
-				{#each row as cell}
-					<td>
-						{#if cell.type === 'basic'}
-							<span class:key={cell.key}>{cell.data}</span>
-						{:else if cell.type === 'optionList'}
-							<OptionDisplay options={cell.data} />
-						{/if}
-					</td>
+				{#each table.headRow as title}
+				<th>{title}</th>
 				{/each}
 			</tr>
-		{/each}
-	</table>
+			{#each table.body as row}
+				<tr>
+					{#each row as cell}
+						<td>
+							{#if cell.type === 'basic'}
+								<span class:key={cell.key}>{cell.data}</span>
+							{:else if cell.type === 'optionList'}
+								<OptionDisplay options={cell.data} disabled={table.eliminated} />
+							{/if}
+						</td>
+					{/each}
+				</tr>
+			{/each}
+		</table>
+	</div>
 	{/each}
 </section>
 
@@ -76,6 +79,17 @@
 			padding: 5px;
 		}
 	}
+	.tableDiv {
+		align-items: center;
+		display: flex;
+		flex-direction: column;
+		height: 100%;
+		justify-content: center;
+		width: 100%;
+		button {
+			margin-bottom: 5px;
+		}
+	}
 	.key {
 		color: var(--appColorPrimary);
 		font-weight: bold;
@@ -84,6 +98,9 @@
 		display: grid;
 		grid-template-columns: repeat(auto-fill, minmax(400px, 400px));
 		grid-gap: 5px;
+	}
+	table {
+		width: 100%;
 	}
 	table, th, td {
 		border: 1px solid white;
@@ -94,5 +111,13 @@
 	}
 	td {
 		text-align: center;
+	}
+	table.eliminated {
+		border: 1px solid var(--appAccentColor);
+		color: var(--appAccentColor);
+		th, td {
+			border: 1px solid var(--appAccentColor);
+			text-decoration: line-through;
+		}
 	}
 </style>

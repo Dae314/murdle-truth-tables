@@ -21,3 +21,14 @@ h3 {
 	margin-top: 10px;
 	padding: 0;
 }
+
+button {
+	background-color: var(--appColorPrimary);
+	border: 2px solid var(--appColorPrimary);
+	border-radius: 5px;
+	color: var(--appTextColor);
+	cursor: pointer;
+	font-weight: bold;
+	padding: 3px;
+	user-select: none;
+}

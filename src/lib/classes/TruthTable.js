@@ -6,6 +6,7 @@ export default class TruthTable {
 		this.categories = 'categories' in config ? [...config.categories].filter(e => e.active) : [];
 		this.keyCategory = 'keyCategory' in config ? config.keyCategory : 0;
 		this.keyOption = 'keyOption' in config ? config.keyOption : 0;
+		this.eliminated = false;
 		if(this.categories[this.keyCategory]) this.categories[this.keyCategory].key = true;
 		for(let category of this.categories) {
 			if(category.key) {

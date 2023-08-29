@@ -1,5 +1,6 @@
 <script>
 	export let options = [];
+	export let disabled = false;
 
 	const validStates = [
 		'unknown',
@@ -10,7 +11,7 @@
 
 <div class="optionPicker">
 	{#each options as option}
-		<button type="button" on:click={() => option.state = (option.state + 1) % validStates.length} class={validStates[option.state]}>
+		<button type="button" on:click={() => option.state = (option.state + 1) % validStates.length} class={validStates[option.state]} disabled={disabled}>
 			<span>
 				{option.name}
 			</span>
@@ -43,10 +44,13 @@
 			color: var(--appTextColor);
 			font-weight: bold;
 		}
-		&.eliminated {
+		&.eliminated, &:disabled {
 			color: var(--appAccentColor);
 			border-color: var(--appAccentColor);
 			text-decoration: line-through;
+		}
+		&:disabled {
+			cursor: not-allowed;
 		}
 	}
 </style>
