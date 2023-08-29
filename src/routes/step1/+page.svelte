@@ -75,6 +75,20 @@
 			margin-bottom: 10px;
 		}
 	}
+	.categoryOptions {
+		h3 {
+			margin-bottom: 5px;
+		}
+		textarea {
+			color: var(--appTextColor);
+			background-color: var(--appBGColor);
+			border: 2px solid var(--appColorPrimary);
+			border-radius: 3px;
+			&:focus {
+				outline: 1px solid var(--appColorPrimary);
+			}
+		}
+	}
 	.navigation {
 		margin-top: 10px;
 		a {
