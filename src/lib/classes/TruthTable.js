@@ -1,4 +1,3 @@
-import MurdleOption from '$lib/classes/MurdleOption.js';
 
 export default class TruthTable {
 	#tableOptions = [];
@@ -12,14 +11,29 @@ export default class TruthTable {
 			if(category.key) {
 				for(let i = 0; i < category.options.length; i++) {
 					if(i === this.keyOption) {
-						this.#tableOptions.push(new MurdleOption({name: category.options[i], categoryID: category.id, key: true}));
+						this.#tableOptions.push({
+							name: category.options[i],
+							categoryID: category.id,
+							key: true,
+							state: 0,
+						});
 					} else {
-						this.#tableOptions.push(new MurdleOption({name: category.options[i], categoryID: category.id}));
+						this.#tableOptions.push({
+							name: category.options[i],
+							categoryID: category.id,
+							key: false,
+							state: 0,
+						});
 					}
 				}
 			}
 			for(let option of category.options) {
-				this.#tableOptions.push(new MurdleOption({name: option, categoryID: category.id}))
+				this.#tableOptions.push({
+					name: option,
+					categoryID: category.id,
+					key: false,
+					state: 0,
+				});
 			}
 		}
 		this.headRow = this.categories.map(e => e.name);
@@ -28,7 +42,7 @@ export default class TruthTable {
 			let row = [];
 			row.push({data: bodyOption, type: 'basic', key: this.categories[this.keyCategory].options.indexOf(bodyOption) === this.keyOption });
 			for(let category of this.categories.filter((e, i) => i !== this.keyCategory)) {
-				row.push({data: this.#tableOptions.filter(e => e.categoryID === category.id), type: 'optionList'});
+				row.push({data: this.#tableOptions.filter(e => e.categoryID === category.id).map(e => JSON.parse(JSON.stringify(e))), type: 'optionList'});
 			}
 			this.body.push(row);
 		}

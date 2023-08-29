@@ -1,10 +1,16 @@
 <script>
 	export let options = [];
+
+	const validStates = [
+		'unknown',
+		'assigned',
+		'eliminated',
+	];
 </script>
 
 <div class="optionPicker">
 	{#each options as option}
-		<button type="button" on:click={() => { option.toggleState(); option.state = option.state; }} class={option.stateStr}>
+		<button type="button" on:click={() => option.state = (option.state + 1) % validStates.length} class={validStates[option.state]}>
 			<span>
 				{option.name}
 			</span>

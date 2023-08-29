@@ -8,7 +8,7 @@
 	onMount(async () => {
 		processOptions();
 		createTables();
-	})
+	});
 
 	function processOptions() {
 		for(let category of $TruthTableData.murdle_categories.filter(e => e.active)) {
@@ -49,7 +49,7 @@
 		</tr>
 		{#each table.body as row}
 			<tr>
-				{#each row as cell, i}
+				{#each row as cell}
 					<td>
 						{#if cell.type === 'basic'}
 							<span class:key={cell.key}>{cell.data}</span>
