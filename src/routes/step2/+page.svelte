@@ -82,7 +82,7 @@
 	}
 	.tablesDisplay {
 		display: grid;
-		grid-template-columns: 1fr 1fr 1fr;
+		grid-template-columns: repeat(auto-fill, minmax(400px, 400px));
 		grid-gap: 5px;
 	}
 	table, th, td {
