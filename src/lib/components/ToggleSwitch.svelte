@@ -6,13 +6,15 @@
 
 	export let size = 'medium';
 	export let state = false;
-	export let onColor = window.getComputedStyle(document.documentElement).getPropertyValue('--appColorPrimary');
-	export let offColor = window.getComputedStyle(document.documentElement).getPropertyValue('--appAccentColor');
+	export let onColor;
+	export let offColor;
 	const dispatch = createEventDispatcher();
 
 	let el;
 	
 	onMount(async () => {
+		if(!onColor) onColor = window.getComputedStyle(document.documentElement).getPropertyValue('--appColorPrimary');
+		if(!offColor) offColor = window.getComputedStyle(document.documentElement).getPropertyValue('--appAccentColor');
 		el.style.setProperty('--toggle-on-color', onColor);
 		el.style.setProperty('--toggle-off-color', offColor);
 
