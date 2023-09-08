@@ -9,6 +9,7 @@ const TruthTableData = writable({
 		new MurdleCategory({id: 3, name: 'Motives', active: false}),
 	],
 	truth_tables: [],
+	simplified: false,
 });
 
 export default TruthTableData;

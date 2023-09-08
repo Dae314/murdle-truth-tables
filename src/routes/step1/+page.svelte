@@ -1,5 +1,6 @@
 <script>
 	import TruthTableData from '$lib/stores/TruthTableData.js';
+	import ToggleSwitch from '$lib/components/ToggleSwitch.svelte';
 	import { base } from '$app/paths';
 </script>
 
@@ -27,6 +28,13 @@
 </section>
 
 <section class="navigation">
+	<div class="simplifyToggleArea">
+		<p>Show simplified table:</p>
+		<ToggleSwitch
+			size="small"
+			bind:state={$TruthTableData.simplified}
+		/>
+	</div>
 	<a href="{base}/step2">Next</a>
 </section>
 
@@ -90,14 +98,26 @@
 		}
 	}
 	.navigation {
+		display: flex;
+		flex-direction: column;
 		margin-top: 10px;
+		.simplifyToggleArea {
+			align-items: center;
+			display: flex;
+			p {
+				margin: 0;
+				margin-right: 10px;
+			}
+		}
 		a {
 			background: var(--appColorPrimary);
 			border-radius: 5px;
 			text-decoration: none;
 			color: var(--appTextColor);
 			font-weight: bold;
+			margin-top: 10px;
 			padding: 5px;
+			width: fit-content;
 		}
 	}
 </style>

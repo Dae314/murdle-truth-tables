@@ -22,13 +22,24 @@
 		$TruthTableData.truth_tables = [];
 		// always key off suspects
 		const suspects = $TruthTableData.murdle_categories.findIndex(e => e.name === 'Suspects');
-		for(let option of $TruthTableData.murdle_categories[suspects].options) {
+		
+		if($TruthTableData.simplified) {
+			// only create one table
 			let newTable = new TruthTable({
 				categories: $TruthTableData.murdle_categories,
 				keyCategory: suspects,
-				keyOption: $TruthTableData.murdle_categories[suspects].options.findIndex(e => e === option)
 			});
-			$TruthTableData.truth_tables = [...$TruthTableData.truth_tables, newTable];
+			$TruthTableData.truth_tables = [newTable];
+		} else {
+			// create one table for each suspect option
+			for(let option of $TruthTableData.murdle_categories[suspects].options) {
+				let newTable = new TruthTable({
+					categories: $TruthTableData.murdle_categories,
+					keyCategory: suspects,
+					keyOption: $TruthTableData.murdle_categories[suspects].options.findIndex(e => e === option)
+				});
+				$TruthTableData.truth_tables = [...$TruthTableData.truth_tables, newTable];
+			}
 		}
 	}
 </script>
